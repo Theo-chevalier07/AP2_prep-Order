@@ -1,17 +1,6 @@
-﻿using AP2_prepOrder.BDD;
-using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.Data.SqlClient;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace AP2_prepOrder
 {
@@ -38,13 +27,27 @@ namespace AP2_prepOrder
                     tbErreur.Text = "Identifiant ou mot de passe incorrect.";
                     return;
                 }
-
-                //var pageConnexion = new Connexion();
-
-                //MainWindow.MainContent.Content = pageConnexion;
-
-                tbErreur.Visibility = Visibility.Visible;
-                tbErreur.Text = "Authentification validée !";
+                else
+                {
+                    if (user.Role == "Responsable")
+                    {
+                        tbErreur.Visibility = Visibility.Visible;
+                        tbErreur.Text = "Authentification validée ! Mode responsable";
+                        return;
+                    }
+                    if (user.Role == "Préparateur")
+                    {
+                        tbErreur.Visibility = Visibility.Visible;
+                        tbErreur.Text = "Authentification validée ! Mode préparateur";
+                        return;
+                    }
+                    if (user.Role == "Cariste")
+                    {
+                        tbErreur.Visibility = Visibility.Visible;
+                        tbErreur.Text = "Authentification validée ! Mode cariste";
+                        return;
+                    }
+                }
             }
             catch (SqlException ex)
             {

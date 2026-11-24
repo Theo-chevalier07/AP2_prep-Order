@@ -19,6 +19,10 @@ namespace AP2_prepOrder
         public MainWindow()
         {
             InitializeComponent();
+
+            var pageConnexion = new Connexion();
+
+            MainContent.Content = pageConnexion;
         }
     }
 }
